@@ -5,10 +5,12 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
+    Image,
 } from "react-native";
 import ModalDropdown from "react-native-modal-dropdown";
 import React, { useState } from "react";
 import Videos from "../Components/Videos";
+import profilePic from "../assets/profile-pic.jpeg";
 
 export default function ProfilePage({ navigation }) {
     const [selectedUser, setSelectedUser] = useState("Adam Tan");
@@ -69,19 +71,24 @@ export default function ProfilePage({ navigation }) {
                 </ModalDropdown>
 
                 {/* <Icon></Icon> */}
-                <Text>@ {accountName ? accountName : "dancerAdam"}</Text>
+                <View>
+                    <Image source={profilePic} style={styles.profilePic} />
+                </View>
+                <Text style={styles.username}>
+                    @{accountName ? accountName : "dancerAdam"}
+                </Text>
                 <View style={styles.followingContainer}>
                     <View style={styles.section}>
-                        <Text>50</Text>
-                        <Text>Following</Text>
+                        <Text style={styles.sectionNum}>50</Text>
+                        <Text style={styles.subSection}>Following</Text>
                     </View>
                     <View style={styles.section}>
-                        <Text>50</Text>
-                        <Text>Followers</Text>
+                        <Text style={styles.sectionNum}>50</Text>
+                        <Text style={styles.subSection}>Followers</Text>
                     </View>
                     <View style={styles.section}>
-                        <Text>50</Text>
-                        <Text>Likes</Text>
+                        <Text style={styles.sectionNum}>50</Text>
+                        <Text style={styles.subSection}>Likes</Text>
                     </View>
                 </View>
 
@@ -92,7 +99,7 @@ export default function ProfilePage({ navigation }) {
                             // Handle the press of Button 1
                         }}
                     >
-                        <Text style={styles.buttonText}> Edit Profile</Text>
+                        <Text style={styles.buttonText}>Edit Profile</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
@@ -110,47 +117,86 @@ export default function ProfilePage({ navigation }) {
                     onPress={() => {}}
                 >
                     <Text style={[styles.buttonText, { fontSize: 10 }]}>
-                        Add Bio
+                        + Add Bio
                     </Text>
                 </TouchableOpacity>
 
                 {/* Row of tabs */}
                 <View style={styles.tabRow}>
                     <TouchableOpacity
-                        style={[
-                            styles.tabButton,
-                            activeTab === "Tab1" && styles.activeTab,
-                        ]}
                         onPress={() => switchTab("Tab1")}
+                        style={styles.tabButton}
                     >
-                        <Text>aaaa</Text>
+                        <Text
+                            style={[
+                                activeTab === "Tab1"
+                                    ? styles.activeTab
+                                    : styles.inactiveTab,
+                            ]}
+                        >
+                            Videos
+                        </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[
-                            styles.tabButton,
-                            activeTab === "Tab2" && styles.activeTab,
-                        ]}
                         onPress={() => switchTab("Tab2")}
+                        style={styles.tabButton}
                     >
-                        <Text>Tab 2</Text>
+                        <Text
+                            style={[
+                                activeTab === "Tab2"
+                                    ? styles.activeTab
+                                    : styles.inactiveTab,
+                            ]}
+                        >
+                            Private
+                        </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[
-                            styles.tabButton,
-                            activeTab === "Tab3" && styles.activeTab,
-                        ]}
                         onPress={() => switchTab("Tab3")}
+                        style={styles.tabButton}
                     >
-                        <Text>Tab 3</Text>
+                        <Text
+                            style={[
+                                activeTab === "Tab3"
+                                    ? styles.activeTab
+                                    : styles.inactiveTab,
+                            ]}
+                        >
+                            Repost
+                        </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[
-                            styles.tabButton,
-                            activeTab === "Tab4" && styles.activeTab,
-                        ]}
-                        onPress={() => navigation.navigate("GlobePage")}
+                        onPress={() => {
+                            navigation.navigate("GlobePage");
+                            switchTab("Tab4");
+                        }}
+                        style={styles.tabButton}
                     >
-                        <Text>Tab 4</Text>
+                        <Text
+                            style={
+                                activeTab === "Tab4"
+                                    ? styles.activeTab
+                                    : styles.inactiveTab
+                            }
+                        >
+                            Collection
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            switchTab("Tab5");
+                        }}
+                        style={styles.tabButton}
+                    >
+                        <Text
+                            style={
+                                activeTab === "Tab5"
+                                    ? styles.activeTab
+                                    : styles.inactiveTab
+                            }
+                        >
+                            Like
+                        </Text>
                     </TouchableOpacity>
                 </View>
 
@@ -178,9 +224,20 @@ const styles = StyleSheet.create({
     topProfile: {
         flex: 2,
         width: "100%",
-        backgroundColor: "lightblue",
+        backgroundColor: "#121212",
         justifyContent: "center",
         alignItems: "center",
+    },
+    username: {
+        color: "#eaeaea",
+        marginBottom: 20,
+    },
+    profilePic: {
+        backgroundColor: "#eaeaea",
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        marginBottom: 15,
     },
     buttonContainer: {
         flexDirection: "row",
@@ -188,12 +245,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     button: {
-        backgroundColor: "grey",
+        backgroundColor: "#2e2e2e",
         padding: 10,
         borderRadius: 5,
     },
     buttonBio: {
-        backgroundColor: "grey",
+        backgroundColor: "#2e2e2e",
         padding: 5,
         borderRadius: 5,
     },
@@ -224,6 +281,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
     },
+    sectionNum: {
+        color: "#eaeaea",
+    },
+    subSection: {
+        color: "#6f6f6f",
+    },
     tabRow: {
         flexDirection: "row",
         marginTop: 10,
@@ -233,11 +296,12 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         alignItems: "center",
-        borderWidth: 1,
-        borderColor: "gray",
     },
     activeTab: {
-        backgroundColor: "lightblue",
+        color: "#eaeaea",
+    },
+    inactiveTab: {
+        color: "#747474",
     },
     tabContent: {
         flex: 1,

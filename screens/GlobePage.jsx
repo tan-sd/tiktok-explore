@@ -67,6 +67,7 @@ export default function GlobePage({ navigation }) {
             </View>
             <View style={styles.title}>
                 <Text style={styles.titleText}>Food Paradise 🍔🍱🍡</Text>
+                <Text style={styles.subText}>{foodPlaces.length} videos</Text>
             </View>
             <View style={styles.mapContainer}>
                 <MapView
@@ -104,6 +105,7 @@ export default function GlobePage({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#121212",
     },
     map: {
         ...StyleSheet.absoluteFillObject,
@@ -117,14 +119,19 @@ const styles = StyleSheet.create({
     },
     title: {
         top: 100,
-        left: 50,
+        left: 25,
     },
     titleText: {
         fontSize: 19,
+        color: "#eaeaea",
+        marginBottom: 5,
+    },
+    subText: {
+        color: "#6f6f6f",
     },
     leftArrow: {
-        width: 30,
-        height: 30,
+        width: 20,
+        height: 20,
         top: 65,
         left: 20,
     },
