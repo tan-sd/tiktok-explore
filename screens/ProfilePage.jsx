@@ -14,6 +14,7 @@ import profilePic from "../assets/profile-pic.jpeg";
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import Collections from "../Components/Collections";
 
 export default function ProfilePage({ navigation }) {
     const [selectedUser, setSelectedUser] = useState("Adam Tan");
@@ -165,10 +166,11 @@ export default function ProfilePage({ navigation }) {
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate("GlobePage");
-                            switchTab("Tab4");
-                        }}
+                        onPress={() => switchTab("Tab4")}
+                        // onPress={() => {
+                        //     navigation.navigate("GlobePage");
+                        //     switchTab("Tab4");
+                        // }}
                         style={styles.tabButton}
                     >
                         <Text
@@ -200,11 +202,22 @@ export default function ProfilePage({ navigation }) {
                 </View>
 
                 {/* Content based on active tab */}
-                <View style={styles.tabContent}>
+                {/* <View style={styles.tabContent}> */}
                     {/* Idk how to make this load conditionally based on tab clicked: tabContent[activeTab] */}
-                    <ScrollView style={styles.tabContentScroll}>
+                    {/* <ScrollView style={styles.tabContentScroll}>
                         <Videos numberOfVids={40} />
                     </ScrollView>
+                </View> */}
+                <View style={styles.tabContent}>
+                    {activeTab === "Tab4" ? ( // Check if activeTab is Tab4
+                        <ScrollView style={styles.tabContentScroll}>
+                            <Collections numberOfVids={20} />
+                        </ScrollView>
+                    ) : (
+                        <ScrollView style={styles.tabContentScroll}>
+                            <Videos numberOfVids={40} />
+                        </ScrollView>
+                    )}
                 </View>
             </View>
 

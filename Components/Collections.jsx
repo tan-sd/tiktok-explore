@@ -21,7 +21,7 @@ export default function ProfilePage(props) {
     // Get width for images
     const screenWidth = Dimensions.get('window').width;
     const numColumns = 2;
-    const marginSize = 10; 
+    const marginSize = 20; 
     const spacingSize = 5; 
     const imageWidth = (screenWidth - (2 * marginSize) - spacingSize) / numColumns; 
 
@@ -31,10 +31,10 @@ export default function ProfilePage(props) {
         {Array.from({ length: numRows }).map((_, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
             {imageSources.slice(rowIndex * 2, (rowIndex + 1) * 2).map((source, colIndex) => (
-            <ImageBackground key={colIndex} source={{ uri: source }} style={{width: imageWidth, aspectRatio: 3/4, marginRight: spacingSize}}>
+            <ImageBackground key={colIndex} source={{ uri: source }} style={{width: imageWidth, aspectRatio: 3/4, marginBottom: 5,marginLeft: colIndex === 0 ? marginSize : spacingSize, marginRight: colIndex === 0 ? spacingSize : marginSize}}>
+                <Text style={styles.placeholderText}>Collection</Text>
                 <View style={styles.lockBtn}>
                     <Feather name="lock" size={20} color="white" />
-                    <Text style={styles.placeholderText}>Collection</Text>
                 </View>
             </ImageBackground>
             ))}
@@ -66,7 +66,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     placeholderText: {
+        position: 'absolute',
+        bottom: 10,
         color: 'white',
-        marginLeft: 3,
+        marginLeft: 5,
+        display: 'flex',
+        flexDirection: 'row',
+        fontWeight: 'bold',
     }
 });
