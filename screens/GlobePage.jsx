@@ -83,8 +83,8 @@ export default function GlobePage({ navigation }) {
                         <Marker
                             key={index}
                             coordinate={{
-                                latitude: place.latitude,
-                                longitude: place.longitude,
+                                latitude: place.latitude ? place.latitude : 0 ,
+                                longitude: place.longitude ? place.longitude : 0,
                             }}
                         >
                             <Image

@@ -8,9 +8,15 @@ import GlobePage from "./screens/GlobePage";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// Define a simple placeholder component
+function PlaceholderTab() {
+    return null; // This component does nothing
+}
 
 function TabNavigator() {
     return (
@@ -18,13 +24,28 @@ function TabNavigator() {
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor:
-                        route.name === "Profile" ||
-                        route.name === "Shop" ||
-                        route.name === "Inbox"
-                            ? "#252525"
-                            : "#000000",
+                    backgroundColor: 'black'
                 },
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+            
+                    if (route.name === "Home") {
+                        iconName = focused ? "home" : "home-outline";
+                    } else if (route.name === "Shop") {
+                        iconName = focused ? "basket" : "basket-outline";
+                    } else if (route.name === "Inbox") {
+                        iconName = focused ? "chatbox" : "chatbox-outline";
+                    } else if (route.name === "Profile") {
+                        iconName = focused ? "person" : "person-outline";
+                    } else if (route.name === "Add") {
+                        iconName = "add"
+                    }
+            
+                    // You can customize the size and color of the icons here
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: "white", // Change active icon and text color to red
+                tabBarInactiveTintColor: "#b5b5b5", //
             })}
         >
             <Tab.Screen
@@ -39,6 +60,14 @@ function TabNavigator() {
                 component={ShopPage}
                 options={{
                     headerShown: false,
+                }}
+            />
+            <Tab.Screen
+                name="Add"
+                component={PlaceholderTab}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "",
                 }}
             />
             <Tab.Screen
