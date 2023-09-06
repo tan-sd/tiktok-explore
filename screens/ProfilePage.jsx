@@ -11,6 +11,9 @@ import ModalDropdown from "react-native-modal-dropdown";
 import React, { useState } from "react";
 import Videos from "../Components/Videos";
 import profilePic from "../assets/profile-pic.jpeg";
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export default function ProfilePage({ navigation }) {
     const [selectedUser, setSelectedUser] = useState("Adam Tan");
@@ -19,7 +22,7 @@ export default function ProfilePage({ navigation }) {
 
     const userToAccountMap = {
         "Adam Tan": "dancerAdam",
-        Rachel: "singerRach",
+        "Rachel": "singerRach",
         "Seth Yap": "drummerSeth",
         "Sheng Da": "guitarCaleb",
         "Jun Sui": "dancerJun",
@@ -95,17 +98,13 @@ export default function ProfilePage({ navigation }) {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={[styles.button, { marginRight: 10 }]}
-                        onPress={() => {
-                            // Handle the press of Button 1
-                        }}
+                        onPress={() => {}}
                     >
                         <Text style={styles.buttonText}>Edit Profile</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {
-                            // Handle the press of Button 2
-                        }}
+                        onPress={() => {}}
                     >
                         <Text style={styles.buttonText}>Add Friends</Text>
                     </TouchableOpacity>
@@ -134,7 +133,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Videos
+                            <Feather name="grid" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -148,7 +147,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Private
+                            <MaterialIcons name="lock-outline" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -162,7 +161,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Repost
+                            <AntDesign name="sharealt" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -179,7 +178,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab
                             }
                         >
-                            Collection
+                            <Feather name="bookmark" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -195,7 +194,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab
                             }
                         >
-                            Like
+                          <AntDesign name="hearto" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                 </View>

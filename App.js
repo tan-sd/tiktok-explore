@@ -28,7 +28,7 @@ function TabNavigator() {
                 },
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-            
+
                     if (route.name === "Home") {
                         iconName = focused ? "home" : "home-outline";
                     } else if (route.name === "Shop") {
@@ -38,9 +38,14 @@ function TabNavigator() {
                     } else if (route.name === "Profile") {
                         iconName = focused ? "person" : "person-outline";
                     } else if (route.name === "Add") {
-                        iconName = "add"
+                        return (<View style={styles.container}>
+                            <View style={[styles.blueRectangle, { backgroundColor: 'cyan' }]} />
+                            <View style={[styles.redRectangle, { backgroundColor: 'red' }]} />
+                            <View style={[styles.whiteRectangle, { backgroundColor: 'white' }]} />
+                            <Ionicons name="ios-add-sharp" size={24} color="black" />
+                        </View>)
                     }
-            
+
                     // You can customize the size and color of the icons here
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
@@ -113,3 +118,36 @@ export default function App() {
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 13,
+        width: 40,
+        height: 40,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    redRectangle: {
+        position: 'absolute',
+        width: 40,
+        height: 40,
+        left: 10,
+        borderRadius: 10,
+    },
+    blueRectangle: {
+        position: 'absolute',
+        width: 40,
+        height: 40,
+        right: 10,
+        borderRadius: 10,
+    },
+    whiteRectangle: {
+        position: 'absolute',
+        width: 40,
+        height: 40,
+        borderRadius: 10,
+    },
+});
+
