@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View , TouchableOpacity} from "react-native";
+import { StyleSheet, Text, View , TouchableOpacity, ScrollView} from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 import React, { useState } from 'react';
+import Videos from "../Components/Videos"
 
 export default function ProfilePage() {
 
@@ -148,14 +149,13 @@ export default function ProfilePage() {
 
          {/* Content based on active tab */}
         <View style={styles.tabContent}>
-            <Text>{tabContent[activeTab]}</Text>
+
+          {/* Idk how to make this load conditionally based on tab clicked: tabContent[activeTab] */}
+          <ScrollView style={styles.tabContentScroll}>
+            <Videos numberOfVids={40} />
+          </ScrollView>
+
         </View>
-
-      </View>
-
-      <View style={styles.bottomProfile}>
-       
-        <Text>Section 2 Content</Text>
       </View>
     
             <StatusBar style="auto" />
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
       tabRow: {
         flexDirection: 'row',
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 0,
       },
       tabButton: {
         flex: 1,
@@ -238,6 +238,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
+      },
+      tabContentScroll: {
+        width: '100%',
       },
 
       // bottom section
