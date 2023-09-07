@@ -19,7 +19,7 @@ export default function ProfilePage({ navigation }) {
 
     const userToAccountMap = {
         "Adam Tan": "dancerAdam",
-        Rachel: "singerRach",
+        "Rachel" : "singerRach",
         "Seth Yap": "drummerSeth",
         "Sheng Da": "guitarCaleb",
         "Jun Sui": "dancerJun",
@@ -204,7 +204,7 @@ export default function ProfilePage({ navigation }) {
                 <View style={styles.tabContent}>
                     {/* Idk how to make this load conditionally based on tab clicked: tabContent[activeTab] */}
                     <ScrollView style={styles.tabContentScroll}>
-                        <Videos numberOfVids={40} />
+                        <Videos numberOfVids={40} navigation={navigation} />
                     </ScrollView>
                 </View>
             </View>

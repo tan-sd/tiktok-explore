@@ -1,11 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import IndvPost from "../Components/IndvPost"
 
 export default function HomePage() {
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        to_return = Math.floor(Math.random() * (max - min)) + min
+        return to_return;
+    }
+
     return (
         <View style={styles.container}>
-            <Text>This is the home page </Text>
-            <StatusBar style="auto" />
+            <IndvPost imgId={getRandomInt(1,500)} />
         </View>
     );
 }

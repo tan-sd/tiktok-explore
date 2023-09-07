@@ -5,6 +5,8 @@ import ShopPage from "./screens/ShopPage";
 import InboxPage from "./screens/InboxPage";
 import ProfilePage from "./screens/ProfilePage";
 import GlobePage from "./screens/GlobePage";
+import IndvPost from "./Components/IndvPost";
+import Videos from "./Components/Videos";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -106,6 +108,11 @@ export default function App() {
                     <Stack.Screen
                         name="ProfilePage"
                         component={ProfilePage}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="IndvPost"
+                        component={IndvPost}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
