@@ -215,7 +215,7 @@ export default function ProfilePage({ navigation }) {
                         </ScrollView>
                     ) : (
                         <ScrollView style={styles.tabContentScroll}>
-                            <Videos numberOfVids={40} />
+                            <Videos numberOfVids={40} navigation={navigation} />
                         </ScrollView>
                     )}
                 </View>
