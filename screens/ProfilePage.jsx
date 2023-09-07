@@ -211,7 +211,7 @@ export default function ProfilePage({ navigation }) {
                 <View style={styles.tabContent}>
                     {activeTab === "Tab4" ? ( // Check if activeTab is Tab4
                         <ScrollView style={styles.tabContentScroll}>
-                            <Collections numberOfVids={20} />
+                            <Collections numberOfVids={20} navigation={navigation}/>
                         </ScrollView>
                     ) : (
                         <ScrollView style={styles.tabContentScroll}>

@@ -54,20 +54,22 @@ export default function Collections(props) {
         {Array.from({ length: numRows }).map((_, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
             {imageSources.slice(rowIndex * 2, (rowIndex + 1) * 2).map((source, colIndex) => (
-        //     <TouchableOpacity
-        //     key={colIndex}
-        //     onPress={() => {
-        //         navigation.navigate("GlobePage");
-        //         // Add any additional navigation logic here
-        //     }}
-        // >
+            <TouchableOpacity
+            key={colIndex}
+            onPress={() => {
+                props.navigation.navigate("IndvCollection");
+                // Add any additional navigation logic here
+            }}
+        >
             <ImageBackground key={colIndex} source={{ uri: source }} style={{width: imageWidth, aspectRatio: 3/4, marginBottom: 5,marginLeft: colIndex === 0 ? marginSize : spacingSize, marginRight: colIndex === 0 ? spacingSize : marginSize}}>
                 <Text style={styles.placeholderText}>{collectionNames[(rowIndex * 2) + colIndex]}</Text>
                 <View style={styles.lockBtn}>
                     <Feather name="lock" size={20} color="white" />
                 </View>
             </ImageBackground>
-        // </TouchableOpacity>
+
+
+        </TouchableOpacity>
             ))}
         </View>
         ))}

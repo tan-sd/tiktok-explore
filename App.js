@@ -7,6 +7,8 @@ import ProfilePage from "./screens/ProfilePage";
 import GlobePage from "./screens/GlobePage";
 import IndvPost from "./Components/IndvPost";
 import Videos from "./Components/Videos";
+import Collections from "./Components/Collections";
+import IndvCollection from "./Components/IndvCollection";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -118,6 +120,11 @@ export default function App() {
                     <Stack.Screen
                         name="IndvPost"
                         component={IndvPost}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="IndvCollection"
+                        component={IndvCollection}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
