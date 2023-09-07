@@ -11,6 +11,10 @@ import ModalDropdown from "react-native-modal-dropdown";
 import React, { useState } from "react";
 import Videos from "../Components/Videos";
 import profilePic from "../assets/profile-pic.jpeg";
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import Collections from "../Components/Collections";
 
 export default function ProfilePage({ navigation }) {
     const [selectedUser, setSelectedUser] = useState("Adam Tan");
@@ -19,7 +23,7 @@ export default function ProfilePage({ navigation }) {
 
     const userToAccountMap = {
         "Adam Tan": "dancerAdam",
-        "Rachel" : "singerRach",
+        "Rachel": "singerRach",
         "Seth Yap": "drummerSeth",
         "Sheng Da": "guitarCaleb",
         "Jun Sui": "dancerJun",
@@ -95,17 +99,13 @@ export default function ProfilePage({ navigation }) {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={[styles.button, { marginRight: 10 }]}
-                        onPress={() => {
-                            // Handle the press of Button 1
-                        }}
+                        onPress={() => {}}
                     >
                         <Text style={styles.buttonText}>Edit Profile</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {
-                            // Handle the press of Button 2
-                        }}
+                        onPress={() => {}}
                     >
                         <Text style={styles.buttonText}>Add Friends</Text>
                     </TouchableOpacity>
@@ -134,7 +134,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Videos
+                            <Feather name="grid" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -148,7 +148,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Private
+                            <MaterialIcons name="lock-outline" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -162,14 +162,15 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab,
                             ]}
                         >
-                            Repost
+                            <AntDesign name="sharealt" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate("GlobePage");
-                            switchTab("Tab4");
-                        }}
+                        onPress={() => switchTab("Tab4")}
+                        // onPress={() => {
+                        //     navigation.navigate("GlobePage");
+                        //     switchTab("Tab4");
+                        // }}
                         style={styles.tabButton}
                     >
                         <Text
@@ -179,7 +180,7 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab
                             }
                         >
-                            Collection
+                            <Feather name="bookmark" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -195,17 +196,28 @@ export default function ProfilePage({ navigation }) {
                                     : styles.inactiveTab
                             }
                         >
-                            Like
+                          <AntDesign name="hearto" size={24} color="white" />
                         </Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* Content based on active tab */}
-                <View style={styles.tabContent}>
+                {/* <View style={styles.tabContent}> */}
                     {/* Idk how to make this load conditionally based on tab clicked: tabContent[activeTab] */}
-                    <ScrollView style={styles.tabContentScroll}>
-                        <Videos numberOfVids={40} navigation={navigation} />
+                    {/* <ScrollView style={styles.tabContentScroll}>
+                        <Videos numberOfVids={40} />
                     </ScrollView>
+                </View> */}
+                <View style={styles.tabContent}>
+                    {activeTab === "Tab4" ? ( // Check if activeTab is Tab4
+                        <ScrollView style={styles.tabContentScroll}>
+                            <Collections numberOfVids={20} />
+                        </ScrollView>
+                    ) : (
+                        <ScrollView style={styles.tabContentScroll}>
+                            <Videos numberOfVids={40} />
+                        </ScrollView>
+                    )}
                 </View>
             </View>
 
