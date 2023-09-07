@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
 
-export default function ProfilePage(props) {
+export default function Collections(props) {
     
     function getRandomInt(min, max) {
         min = Math.ceil(min);
