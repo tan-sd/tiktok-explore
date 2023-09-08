@@ -4,6 +4,13 @@ import { useRoute } from '@react-navigation/native';
 
 export default function IndvCollection(props) {
     const route = useRoute();
+    var collectionName
+
+    if (route.params) {
+        collectionName = route.params.collectionName;
+    } else {
+        collectionName = props.collectionName
+    }
     
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -35,7 +42,7 @@ export default function IndvCollection(props) {
                 </View>
             </View>
             <View style={styles.collectionInfo}>
-                <Text style={styles.collectionName}>CollectionName</Text>
+                <Text style={styles.collectionName}>{collectionName}</Text>
                 <Feather name="lock" size={25} color="black" style={styles.lockIcon} />
             </View>
             <View style={styles.video}>
