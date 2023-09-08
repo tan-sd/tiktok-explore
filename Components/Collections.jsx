@@ -57,7 +57,7 @@ export default function Collections(props) {
             <TouchableOpacity
             key={colIndex}
             onPress={() => {
-                props.navigation.navigate("IndvCollection");
+                props.navigation.navigate("IndvCollection", { collectionName: collectionNames[(rowIndex * 2) + colIndex]});
                 // Add any additional navigation logic here
             }}
         >
