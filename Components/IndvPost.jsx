@@ -1,17 +1,26 @@
 import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import { MaterialIcons, AntDesign, Foundation, Ionicons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import profilePic from "../assets/profile-pic.jpeg";
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 export default function IndvPost(props) {
     const route = useRoute();
     var imgId
+    var isShowBack
 
     if (route.params) {
         imgId = route.params.imgId;
+        isShowBack = route.params.showBack;
     } else {
-        imgId = props.imgId
+        imgId = props.imgId;
+        isShowBack = props.showBack;
     }
+
+    const navigation = useNavigation();
+
+    const handleGoBack = () => {
+      navigation.goBack();
+    };
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -22,19 +31,35 @@ export default function IndvPost(props) {
     
     return (
         <ImageBackground src={`https://picsum.photos/id/${imgId}/600/800`} style={styles.vidbg}>
-            <View style={styles.topBar}>
-                <View>
-                    <MaterialIcons name="live-tv" size={24} color="white" style={styles.topBarIcon} />
+            {/* For Home Page */}
+            {!isShowBack && (
+                <View style={styles.topBar}>
+                    <View>
+                        <MaterialIcons name="live-tv" size={24} color="white" style={styles.topBarIcon} />
+                    </View>
+                    <View style={styles.topBarMidPart}>
+                        <Text style={styles.midPartText}>Friends</Text>
+                        <Text style={styles.midPartText}>Following</Text>
+                        <Text style={[styles.midPartText, styles.midPartTextSelected]} >For You</Text>
+                    </View>
+                    <View>
+                        <AntDesign name="search1" size={24} color="white" style={styles.topBarIcon} />
+                    </View>
                 </View>
-                <View style={styles.topBarMidPart}>
-                    <Text style={styles.midPartText}>Friends</Text>
-                    <Text style={styles.midPartText}>Following</Text>
-                    <Text style={[styles.midPartText, styles.midPartTextSelected]} >For You</Text>
+            )}
+
+            {/* For Profile Page */}
+            {isShowBack && (
+                <View style={styles.topBar}>
+                    <View>
+                        <MaterialIcons name="arrow-back" size={24} color="white" style={styles.topBarIcon} onPress={handleGoBack} />
+                    </View>
+                    <View style={styles.searchBar}>
+                            <Text style={styles.searchText}><Ionicons name="search" size={17} color="white" /> butter on a pop tart</Text>
+                            <Text style={styles.searchText}>Search</Text>
+                    </View>
                 </View>
-                <View>
-                    <AntDesign name="search1" size={24} color="white" style={styles.topBarIcon} />
-                </View>
-            </View>
+            )}
 
             <View style={styles.rightBar}>
                 <Image source={profilePic} style={[styles.profilePic, styles.rightBarIcons]} />
@@ -79,7 +104,7 @@ const styles = StyleSheet.create({
     // TOPBAR ===================================
     topBar: {
         marginTop: 50,
-        height: 50,
+        minHeight: 50,
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -103,6 +128,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textDecorationLine: 'underline',
         color: 'white',
+    },
+    searchBar: {
+        flexBasis: 1,
+        flexGrow: 1,
+        margin: 10,
+        borderRadius: 8,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderWidth: 1,
+        borderColor: '#c7c7c7',
+    },
+    searchText: {
+        color: 'white',
+        fontSize: 17,
+        margin: 6,
+        marginLeft: 12,
+        marginRight: 12,
     },
 
     // RIGHTBAR ===================================

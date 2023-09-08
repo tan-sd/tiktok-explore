@@ -12,7 +12,7 @@ export default function HomePage() {
 
     return (
         <View style={styles.container}>
-            <IndvPost imgId={getRandomInt(1,500)} />
+            <IndvPost imgId={getRandomInt(1,85)} showBack={false} />
         </View>
     );
 }
