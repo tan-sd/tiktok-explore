@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Dimensions, ScrollView, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
+import Videos from "./Videos";
 
-export default function IndvCollection(props) {
+export default function IndvCollection(props, {navigation}) {
     const route = useRoute();
     var collectionName
 
@@ -19,17 +20,7 @@ export default function IndvCollection(props) {
         return to_return;
     }
 
-
-
-
-
-    // Get width for images
-    const screenWidth = Dimensions.get('window').width;
-    const numColumns = 2;
-    const marginSize = 20; 
-    const spacingSize = 5; 
-    const imageWidth = (screenWidth - (2 * marginSize) - spacingSize) / numColumns; 
-
+    numOfVideos = getRandomInt(5, 40)
 
     return (
         <View style={styles.container}>
@@ -46,14 +37,13 @@ export default function IndvCollection(props) {
                 <Feather name="lock" size={25} color="black" style={styles.lockIcon} />
             </View>
             <View style={styles.video}>
-                <Text>21 Videos</Text>
+                <Text>{numOfVideos} Videos</Text>
             </View>
             <View style={styles.buttonsContainer}>
                 {/* button 1 */}
                 <TouchableOpacity
                     style={styles.button1}
                     onPress={() => {
-                        // Handle button 1 press
                     }}>
                     <Text style={styles.buttonText1}>
                         <Feather name="settings" size={20} color="black" style={styles.settingsIcon} />
@@ -71,6 +61,11 @@ export default function IndvCollection(props) {
                         View in Maps
                     </Text>
                 </TouchableOpacity>
+            </View>
+            <View style={styles.tabContent}>
+                <ScrollView style={styles.tabContentScroll}>
+                    <Videos numberOfVids={numOfVideos} navigation={navigation} />
+                </ScrollView>
             </View>
         </View>
     );
@@ -143,5 +138,14 @@ const styles = StyleSheet.create({
     buttonText2:{
         color: "white",
         fontWeight: "bold",
+    },
+    tabContent: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+    },
+    tabContentScroll: {
+        width: "100%",
     },
 });
