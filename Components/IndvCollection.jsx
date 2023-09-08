@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         backgroundColor: "#FE2C55",
+        marginLeft: 10,
     },
     buttonText1:{
         fontWeight: "bold",
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        marginTop: 10,
     },
     tabContentScroll: {
         width: "100%",
