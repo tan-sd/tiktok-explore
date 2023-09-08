@@ -13,10 +13,18 @@ export default function Videos(props) {
     // Calculate the number of rows required
     const numRows = Math.ceil(props.numberOfVids / 3);
     var listKey = 0
+    var arrOfVidIds = []
 
     // Create an array to store the image sources (replace with your image sources)
     const imageSources = Array.from({ length: props.numberOfVids }).map(() => {
-        const randomId = getRandomInt(1, 500); // Generate a random id for this element
+        var randomId = getRandomInt(1, 85); // Generate a random id for this element
+
+        while (arrOfVidIds.includes(randomId)) {
+            randomId = getRandomInt(1, 85);
+        }
+
+        arrOfVidIds.push(randomId)
+
         listKey += 1
 
         return {
@@ -38,7 +46,7 @@ export default function Videos(props) {
         <View key={rowIndex} style={styles.row}>
             {imageSources.slice(rowIndex * 3, (rowIndex + 1) * 3).map((source, colIndex) => (
             <TouchableOpacity key={colIndex} onPress={() => {
-                props.navigation.navigate('IndvPost', { imgId: source.id})
+                props.navigation.navigate('IndvPost', { imgId: source.id, showBack: true})
             }}>
                 <ImageBackground source={{ uri: source.url }} style={{width: imageWidth, aspectRatio: 3/4}}>
                     <View style={styles.playBtn}>

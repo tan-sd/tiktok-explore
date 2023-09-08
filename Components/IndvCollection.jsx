@@ -4,10 +4,12 @@ import {
     View,
     ImageBackground,
     Dimensions,
+    ScrollView,
     TouchableOpacity,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import Videos from "./Videos";
 
 export default function IndvCollection(props) {
     const route = useRoute();
@@ -26,6 +28,8 @@ export default function IndvCollection(props) {
     const spacingSize = 5;
     const imageWidth =
         (screenWidth - 2 * marginSize - spacingSize) / numColumns;
+
+    numOfVideos = getRandomInt(5, 40);
 
     return (
         <View style={styles.container}>
@@ -59,7 +63,7 @@ export default function IndvCollection(props) {
                 />
             </View>
             <View style={styles.video}>
-                <Text style={styles.videoText}>21 Videos</Text>
+                <Text style={styles.videoText}>{numOfVideos} Videos</Text>
             </View>
             <View style={styles.buttonsContainer}>
                 {/* button 1 */}
@@ -94,6 +98,14 @@ export default function IndvCollection(props) {
                     />
                     <Text style={styles.buttonText2}>View in Maps</Text>
                 </TouchableOpacity>
+            </View>
+            <View style={styles.tabContent}>
+                <ScrollView style={styles.tabContentScroll}>
+                    <Videos
+                        numberOfVids={numOfVideos}
+                        navigation={props.navigation}
+                    />
+                </ScrollView>
             </View>
         </View>
     );
@@ -174,5 +186,15 @@ const styles = StyleSheet.create({
     buttonText2: {
         color: "white",
         fontWeight: "bold",
+    },
+    tabContent: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        marginTop: 10,
+    },
+    tabContentScroll: {
+        width: "100%",
     },
 });
