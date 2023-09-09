@@ -72,3 +72,5 @@ Clone the github repository to your local machine by typing in the terminal `git
 ### Setup
 1. In the terminal, type `cd tiktok-explore` then `npm install`
 2. To launch the project, type `npx expo start`
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
