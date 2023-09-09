@@ -1,6 +1,7 @@
+<a id="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
-  <ol>
+  <ul>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
@@ -8,7 +9,7 @@
         <li><a href="#team-members">Team Members</a></li>
       </ul>
     </li>
-  </ol>
+  </ul>
 
 <br/>
 <br/>
