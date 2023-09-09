@@ -37,4 +37,27 @@
 | Poo Jun Sui            | junsui.poo.2021  | junsui.poo.2021@scis.smu.edu.sg   |
 | Seth Yap | sethyap.2021 | sethyap.2021@scis.smu.edu.sg |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <br/>
+<br/>
+
+## Prerequisites
+* Please ensure your phone has Expo Go installed from the App Store
+* Ensure you have a valid Google Maps API key to enable integration with Google Maps
+  * Create a .env file in the root folder of your project
+  * Inside the .env file, add the following line `GOOGLE_MAPS_API_KEY=YOUR_API_KEY_HERE`
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br/>
+<br/>
+
+## Installation
+
+### Clone
+Clone the github repository to your local machine by typing in the terminal `git clone https://github.com/tan-sd/tiktok-explore.git`
+
+### Setup
+1. In the terminal, type `cd tiktok-explore` then `npm install`
+2. To launch the project, type `npx expo start`
