@@ -16,13 +16,19 @@ import markerImg from "../assets/marker.png";
 import { Feather } from "@expo/vector-icons";
 import { GOOGLE_MAPS_API_KEY } from "@env";
 import { FontAwesome5 } from "@expo/vector-icons";
-// import * as Location from "expo-location";
+import * as Location from "expo-location";
 
 export default function GlobePage(props) {
     const [foodPlaces, setFoodPlaces] = useState([]);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [slideAnim] = useState(new Animated.Value(-300));
-    // const [currentLocation, setCurrentLocation] = useState(null);
+    const [mapRegion, setMapRegion] = useState({
+        latitude: 1.30027,
+        longitude: 103.851959,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+    });
+    const [currentLocation, setCurrentLocation] = useState(null);
 
     const slideUp = () => {
         Animated.timing(slideAnim, {
@@ -75,27 +81,28 @@ export default function GlobePage(props) {
         geocodeFoodPlaces();
     }, []);
 
-    // useEffect(() => {
-    //     async function getCurrentUserLocation() {
-    //         let { status } = await Location.requestForegroundPermissionsAsync();
-    //         if (status !== "granted") {
-    //             console.error("Permission to access location was denied");
-    //             return;
-    //         }
+    useEffect(() => {
+        async function getCurrentUserLocation() {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== "granted") {
+                console.error("Permission to access location was denied");
+                return;
+            }
 
-    //         let location = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
-    //         setCurrentLocation(location);
-    //     }
+            let location = await Location.getCurrentPositionAsync({
+                enableHighAccuracy: true,
+            });
+            setCurrentLocation(location);
+        }
 
-    //     getCurrentUserLocation();
-    // }, []);
+        getCurrentUserLocation();
+    }, []);
 
-    // useEffect(() => {
-    //     // Check if currentLocation has been set and has coords
-    //     if (currentLocation && currentLocation.coords) {
-    //         console.log(currentLocation);
-    //     }
-    // }, [currentLocation]);
+    useEffect(() => {
+        if (currentLocation && currentLocation.coords) {
+            console.log(currentLocation);
+        }
+    }, [currentLocation]);
 
     return (
         <View style={styles.container}>
@@ -140,20 +147,24 @@ export default function GlobePage(props) {
                     onPress={slideDown}
                     activeOpacity={1}
                 >
-                    <MapView
-                        style={styles.map}
-                        initialRegion={{
-                            latitude: 1.30027,
-                            longitude: 103.851959,
-                            latitudeDelta: 0.05,
-                            longitudeDelta: 0.05,
-                        }}
-                    >
+                    <MapView style={styles.map} region={mapRegion}>
                         {foodPlaces.map((place, index) => (
                             <Marker
                                 onPress={() => {
                                     setSelectedPlace(place);
                                     slideUp();
+                                    // Update mapRegion to focus on the selected marker
+                                    setMapRegion({
+                                        latitude: place.latitude
+                                            ? place.latitude
+                                            : 0,
+                                        longitude: place.longitude
+                                            ? place.longitude
+                                            : 0,
+                                        latitudeDelta: 0.005,
+                                        longitudeDelta: 0.005,
+                                    });
+                                    console.log(mapRegion);
                                 }}
                                 key={index}
                                 coordinate={{
@@ -164,38 +175,27 @@ export default function GlobePage(props) {
                                         ? place.longitude
                                         : 0,
                                 }}
+                            ></Marker>
+                        ))}
+
+                        {currentLocation && (
+                            <Marker
+                                coordinate={{
+                                    latitude: currentLocation.coords.latitude,
+                                    longitude: currentLocation.coords.longitude,
+                                    // latitude: 1.296568,
+                                    // longitude: 103.852119,
+                                }}
+                                pinColor="blue"
                             >
-                                <FontAwesome5
+                                {/* <FontAwesome5
                                     name="map-marker-alt"
                                     style={styles.marker}
                                     size={35}
-                                    color="#EE1C51"
-                                />
-                                <View style={styles.markerIndexContainer}>
-                                    <Text style={styles.markerIndex}>
-                                        {index + 1}
-                                    </Text>
-                                </View>
+                                    color="#69c8d0"
+                                /> */}
                             </Marker>
-                        ))}
-
-                        {/* {currentLocation && ( */}
-                        <Marker
-                            coordinate={{
-                                // latitude: currentLocation.coords.latitude,
-                                // longitude: currentLocation.coords.longitude
-                                latitude: 1.296568,
-                                longitude: 103.852119,
-                            }}
-                        >
-                            <FontAwesome5
-                                name="map-marker-alt"
-                                style={styles.marker}
-                                size={35}
-                                color="#69c8d0"
-                            />
-                        </Marker>
-                        {/* )} */}
+                        )}
                     </MapView>
                 </TouchableOpacity>
                 <Animated.View
