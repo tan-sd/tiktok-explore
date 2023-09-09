@@ -100,7 +100,6 @@ export default function GlobePage(props) {
 
     useEffect(() => {
         if (currentLocation && currentLocation.coords) {
-            console.log(currentLocation);
         }
     }, [currentLocation]);
 
@@ -164,7 +163,6 @@ export default function GlobePage(props) {
                                         latitudeDelta: 0.005,
                                         longitudeDelta: 0.005,
                                     });
-                                    console.log(mapRegion);
                                 }}
                                 key={index}
                                 coordinate={{
@@ -175,7 +173,24 @@ export default function GlobePage(props) {
                                         ? place.longitude
                                         : 0,
                                 }}
-                            ></Marker>
+                            >
+                                <FontAwesome5
+                                    name="map-marker-alt"
+                                    size={35}
+                                    color="#EE1C51"
+                                />
+                                {/* <View style={styles.markerIndexContainer}> */}
+                                {/* <Text style={styles.markerIndex}>
+                                        {index + 1}
+                                    </Text> */}
+                                <Image
+                                    style={styles.markerImg}
+                                    source={{
+                                        uri: "https://picsum.photos/id/42/300/400",
+                                    }}
+                                />
+                                {/* </View> */}
+                            </Marker>
                         ))}
 
                         {currentLocation && (
@@ -186,14 +201,12 @@ export default function GlobePage(props) {
                                     // latitude: 1.296568,
                                     // longitude: 103.852119,
                                 }}
-                                pinColor="blue"
                             >
-                                {/* <FontAwesome5
+                                <FontAwesome5
                                     name="map-marker-alt"
-                                    style={styles.marker}
                                     size={35}
                                     color="#69c8d0"
-                                /> */}
+                                />
                             </Marker>
                         )}
                     </MapView>
@@ -259,7 +272,6 @@ const styles = StyleSheet.create({
     collectionTopBar: {
         flexDirection: "row",
         justifyContent: "space-between",
-        // alignItems: 'center',
         width: "100%",
         marginTop: 50,
         paddingHorizontal: 20,
@@ -279,7 +291,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginLeft: -3,
         marginTop: 10,
-        // alignItems: 'center',
     },
     title: {
         top: 100,
@@ -295,6 +306,14 @@ const styles = StyleSheet.create({
     },
     videoText: {
         color: "#6f6f6f",
+    },
+    markerImg: {
+        position: "absolute",
+        left: 3,
+        top: 4,
+        width: 20,
+        height: 20,
+        borderRadius: 50,
     },
     marker: {
         width: 130,
@@ -340,14 +359,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     likedFollowers: {
-        // width: 150,
         color: "#eaeaea",
         fontSize: 10,
         marginTop: 40,
         marginBottom: 10,
     },
     messageBtn: {
-        // width: 100,
         padding: 10,
         borderRadius: 5,
         backgroundColor: "#FE2C55",
