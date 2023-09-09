@@ -203,7 +203,21 @@ export default function GlobePage(props) {
                 >
                     {selectedPlace ? (
                         <View style={styles.placeInfoContainer}>
-                            <Image style={styles.marker} source={markerImg} />
+                            <TouchableOpacity
+                                onPress={() => {
+                                    props.navigation.navigate("IndvPost", {
+                                        imgId: 42,
+                                        showBack: true,
+                                    });
+                                }}
+                            >
+                                <Image
+                                    style={styles.marker}
+                                    source={{
+                                        uri: "https://picsum.photos/id/42/300/400",
+                                    }}
+                                />
+                            </TouchableOpacity>
                             <View style={styles.placeSubInfoContainer}>
                                 <Text style={styles.placeName}>
                                     {selectedPlace.name}
