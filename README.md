@@ -72,5 +72,6 @@ Clone the github repository to your local machine by typing in the terminal `git
 ### Setup
 1. In the terminal, type `cd tiktok-explore` then `npm install`
 2. To launch the project, type `npx expo start`
+3. Scan the generated QR Code with your device
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
