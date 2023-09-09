@@ -18,5 +18,21 @@
     {
         "name": "Jang Won Korean Restaurant",
         "address": "44 Mosque St, Singapore"
+    },
+    {
+        "name": "Delibowl Express 壹碗",
+        "address": "#02-06 Funan, Singapore"
+    },
+    {
+        "name": "True Breakfast Capitol 初早餐",
+        "address": "13 Stamford Rd, #01-21, Singapore"
+    },
+    {
+        "name": "O’Coffee Club",
+        "address": "252 North Bridge Rd, #03-30, Singapore"
+    },
+    {
+        "name": "Hvala",
+        "address": "30 Victoria St, #01-04/05, Singapore"
     }
 ]
