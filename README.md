@@ -24,7 +24,6 @@
 
 * <a href="https://docs.expo.dev/"><img width="26px" src="./assets/favicon.png"/></a>
 * <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/introduction.org/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="26px"></a>
-* <a href="https://firebase.google.com/?gclid=CjwKCAiA68ebBhB-EiwALVC-Nu9CUOHBl_f4ytQaPMxt6hrueI-AQV3jTr1F-8u7dtfenil2eMGkNhoCH2YQAvD_BwE&gclsrc=aw.ds"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width="26px"></a>
 
 <br/>
 
