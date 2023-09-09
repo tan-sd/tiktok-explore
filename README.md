@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
-  <ul>
+  <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
@@ -9,7 +9,17 @@
         <li><a href="#team-members">Team Members</a></li>
       </ul>
     </li>
-  </ul>
+    <li>
+      <a href="#prerequisites">Prerequisites</a>
+    </li>
+    <li>
+      <a href="#installation">Installation</a>
+    <ul>
+      <li><a href="#clone">Clone</a></li>
+      <li><a href="#setup">Setup</a></li>
+    </ul>
+    </li>
+  </ol>
 
 <br/>
 <br/>
