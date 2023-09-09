@@ -28,7 +28,7 @@ function TabNavigator() {
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: 'black'
+                    backgroundColor: "black",
                 },
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
@@ -42,16 +42,39 @@ function TabNavigator() {
                     } else if (route.name === "Profile") {
                         iconName = focused ? "person" : "person-outline";
                     } else if (route.name === "Add") {
-                        return (<View style={styles.container}>
-                            <View style={[styles.blueRectangle, { backgroundColor: 'cyan' }]} />
-                            <View style={[styles.redRectangle, { backgroundColor: 'red' }]} />
-                            <View style={[styles.whiteRectangle, { backgroundColor: 'white' }]} />
-                            <Ionicons name="ios-add-sharp" size={24} color="black" />
-                        </View>)
+                        return (
+                            <View style={styles.container}>
+                                <View
+                                    style={[
+                                        styles.blueRectangle,
+                                        { backgroundColor: "cyan" },
+                                    ]}
+                                />
+                                <View
+                                    style={[
+                                        styles.redRectangle,
+                                        { backgroundColor: "red" },
+                                    ]}
+                                />
+                                <View
+                                    style={[
+                                        styles.whiteRectangle,
+                                        { backgroundColor: "white" },
+                                    ]}
+                                />
+                                <Ionicons
+                                    name="ios-add-sharp"
+                                    size={24}
+                                    color="black"
+                                />
+                            </View>
+                        );
                     }
 
                     // You can customize the size and color of the icons here
-                    return <Ionicons name={iconName} size={size} color={color} />;
+                    return (
+                        <Ionicons name={iconName} size={size} color={color} />
+                    );
                 },
                 tabBarActiveTintColor: "white", // Change active icon and text color to red
                 tabBarInactiveTintColor: "#b5b5b5", //
@@ -70,6 +93,12 @@ function TabNavigator() {
                 options={{
                     headerShown: false,
                 }}
+                listeners={{
+                    tabPress: (e) => {
+                        // Prevent default action
+                        e.preventDefault();
+                    },
+                }}
             />
             <Tab.Screen
                 name="Add"
@@ -78,12 +107,24 @@ function TabNavigator() {
                     headerShown: false,
                     tabBarLabel: "",
                 }}
+                listeners={{
+                    tabPress: (e) => {
+                        // Prevent default action
+                        e.preventDefault();
+                    },
+                }}
             />
             <Tab.Screen
                 name="Inbox"
                 component={InboxPage}
                 options={{
                     headerShown: false,
+                }}
+                listeners={{
+                    tabPress: (e) => {
+                        // Prevent default action
+                        e.preventDefault();
+                    },
                 }}
             />
             <Tab.Screen
@@ -139,29 +180,28 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 10,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
     },
     redRectangle: {
-        position: 'absolute',
+        position: "absolute",
         width: 40,
         height: 40,
         left: 10,
         borderRadius: 10,
     },
     blueRectangle: {
-        position: 'absolute',
+        position: "absolute",
         width: 40,
         height: 40,
         right: 10,
         borderRadius: 10,
     },
     whiteRectangle: {
-        position: 'absolute',
+        position: "absolute",
         width: 40,
         height: 40,
         borderRadius: 10,
     },
 });
-
